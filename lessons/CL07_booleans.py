@@ -1,8 +1,9 @@
-def check_first_letter(word: str, letter:str) -> str:
-    if (word [0] == letter):
-        print("match!")
+def check_first_letter(word: str, letter: str) -> str:
+    if word[0] == letter:
+        return "match!"
     else:
-        print("no match!")
+        return "no match!"
 
-check_first_letter(word="happy", letter="h")
-check_first_letter(word="happy", letter="s")
+
+print(check_first_letter(word="happy", letter="h"))
+print(check_first_letter(word="happy", letter="s"))
