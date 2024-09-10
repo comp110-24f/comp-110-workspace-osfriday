@@ -6,8 +6,12 @@ __author__: str = "730566893"
 def main_planner(guests: int) -> None:
     """Breaks down number of tea bags and treats and total cost of party."""
     print("A Cozy Tea Party for " + str(guests) + " People!")
-    print("Tea Bags: " + str(tea_bags(people=guests)))
-    print("Treats: " + str(treats(people=guests)))
+    print(
+        "Tea Bags: " + str(tea_bags(people=guests))
+    )  # important to change the types from int to str
+    print(
+        "Treats: " + str(treats(people=guests))
+    )  # important to change the types from int to str
     print(
         "Cost: $"
         + str(
@@ -21,6 +25,9 @@ def tea_bags(people: int) -> int:
     return 2 * people
 
 
+# If each guest gets 2 TB's on average, calculate total TB's by multiplying guests by 2
+
+
 def treats(people: int) -> int:
     """How many treats needed depending on number of guests"""
     return int(1.5 * tea_bags(people=people))
@@ -31,11 +38,11 @@ def cost(tea_count: int, treat_count: int) -> float:
     return 0.50 * tea_count + 0.75 * treat_count
 
 
+# Dealing with floats, we must return a float
+
 if __name__ == "__main__":
     main_planner(guests=int(input("How many guests are attending your tea party? ")))
 
-# Comments
-# Why couldn't the conditional statement go at the start? -> the function/program?
-#   Wasn't defined yet so there was nothing to look for.
-# Why put "people=people" arguments in code??? Is it because it changes when from
-#   people -> guests so it's important to keep your variables clearly defined?
+# Additional Comments
+# Why couldn't the conditional statement go at the start?
+#   Answer: Wasn't defined yet so there was nothing to look for.
