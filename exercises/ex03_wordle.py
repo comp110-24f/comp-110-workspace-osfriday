@@ -5,18 +5,21 @@ __author__ = "730566893"
 
 def main(secret: str) -> None:
     """The entrypoint of the program and main game loop."""
-    N: int = 1  # Number of terms player has used (start with 1)
-    guess: str = input_guess(len(secret))
+    N: int = 1  # Number of turns player has used (start with 1)
     GREEN_BOX: str = "\U0001F7E9"
-    while N <= 6 and (
-        emojified(guess, secret) != N * f" {GREEN_BOX}"
-    ):  # still have turns and didn't answer with the secret
+    ans: bool = False  # want loop to end once you find the secret or N > 6
+    while N <= 6 and (not ans):
         print(f"=== Turn {N}/6 ===")
-        emojified(guess, secret)
-        if emojified(guess, secret) == N * f" {GREEN_BOX}":
+        guess: str = input_guess(len(secret))
+        print(emojified(guess, secret))
+        # guess reassigned to emo. to check if answer == secret
+        guess = emojified(guess, secret)
+        if guess == (f"{GREEN_BOX}" * len(secret)):
+            # so that we can check for any length of secret
             print(f"You won in {N}/6 turns!")
+            ans = True
         N += 1
-    if N > 6:
+    if N > 6 and (not ans):  # if you never get the answer, print...
         print("X/6 - Sorry, try again tomorrow!")
 
 
@@ -25,6 +28,7 @@ def input_guess(secret_word_len: int) -> str:
     guess_word: str = input(f"Enter a {secret_word_len} character word: ")
     while len(guess_word) != secret_word_len:
         guess_word = input(f"That wasn't {secret_word_len} chars! Try again: ")
+        # Don't forget spaces bf and after length
     return guess_word
 
 
@@ -54,13 +58,14 @@ def emojified(guess: str, secret: str) -> str:
     index: int = 0
     while index < len(guess):
         if guess[index] == secret[index]:
-            emoji += f" {GREEN_BOX}"  # Used to create gaps btw emoji's
+            emoji += f"{GREEN_BOX}"  # use f" notation to call variables inside a str.
         elif contains_char(secret_word=secret, char_guess=(guess[index])):
-            emoji += f" {YELLOW_BOX}"  # Used to create gaps btw emoji's
+            emoji += f"{YELLOW_BOX}"
         else:
-            emoji += f" {WHITE_BOX}"  # Used to create gaps btw emoji's
+            emoji += f"{WHITE_BOX}"
         index += 1
     return emoji
 
 
-main("codes")
+if __name__ == "__main__":
+    main(secret="codes")
