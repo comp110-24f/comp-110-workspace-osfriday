@@ -5,6 +5,19 @@ __author__ = "730566893"
 
 def main(secret: str) -> None:
     """The entrypoint of the program and main game loop."""
+    N: int = 1  # Number of terms player has used (start with 1)
+    guess: str = input_guess(len(secret))
+    GREEN_BOX: str = "\U0001F7E9"
+    while N <= 6 and (
+        emojified(guess, secret) != N * f" {GREEN_BOX}"
+    ):  # still have turns and didn't answer with the secret
+        print(f"=== Turn {N}/6 ===")
+        emojified(guess, secret)
+        if emojified(guess, secret) == N * f" {GREEN_BOX}":
+            print(f"You won in {N}/6 turns!")
+        N += 1
+    if N > 6:
+        print("X/6 - Sorry, try again tomorrow!")
 
 
 def input_guess(secret_word_len: int) -> str:
@@ -20,7 +33,7 @@ def contains_char(secret_word: str, char_guess: str) -> bool:
     assert len(char_guess) == 1
     idx: int = 0
     search: bool = False
-    while (idx < len(secret_word)) and (search == False):
+    while (idx < len(secret_word)) and (not search):
         # want loop to end once either of these conditionals are false bc either idx is
         # finished or search is True
         if secret_word[idx] == char_guess:
@@ -48,3 +61,6 @@ def emojified(guess: str, secret: str) -> str:
             emoji += f" {WHITE_BOX}"  # Used to create gaps btw emoji's
         index += 1
     return emoji
+
+
+main("codes")
