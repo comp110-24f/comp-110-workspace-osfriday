@@ -1,6 +1,9 @@
 """Practice with Lists"""
 
 # Lists can only have one type of data (all strs, all floats but not a str and float.)
+#   Lists are a type of data structure; something that lets you reason about
+#   multiple items
+
 # Declaring a List
 names: list[str]
 
@@ -42,6 +45,9 @@ len(game_points)  # returns 3 bc there are 3 items in the list
 # Remove items from a list
 grocery_list.pop(2)  # 2 equates to the INDEX, not number in list,
 #                       therefore it removes "bread", NOT "milk"
+
+
+# Functions can take lists as arguements, return or create lists, and modify lists
 
 
 def display(input: list[int]) -> None:

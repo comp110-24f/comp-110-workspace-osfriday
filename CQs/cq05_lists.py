@@ -9,6 +9,7 @@ def manual_append(x: list[int], n: int) -> None:
 
 
 def double(y: list[int]) -> None:
+    """Double all the entries in a list."""
     index: int = 0
     while index < len(y):
         y[index] *= 2
