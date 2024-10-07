@@ -11,8 +11,8 @@ def all(a: list[int], n: int) -> bool:
         same = False
     while i < len(a):
         if a[i] != n:
-            same = False
-        i += 1
+            same = False  # same is F once one item is not the same
+        i += 1  # to prevent infinite loop and check each index
     return same
 
 
@@ -25,7 +25,7 @@ def max(num: list[int]) -> int:
     while idx < len(num):
         if max < num[idx]:
             max = num[idx]  # max is reassigned to the greater value
-        idx += 1
+        idx += 1  # to prevent infinite loop and check each index
     return max
 
 
@@ -35,12 +35,11 @@ def is_equal(list_1: list[int], list_2: list[int]) -> bool:
     ans: bool = True
     if len(list_1) != len(list_2):
         ans = False
-    while idx < len(list_1):  # what happens if list_1 and list_2 are different lengths?
-        if (
-            list_1[idx] != list_2[idx]
-        ):  # only wants ans to change if there is a non-equal idx
+    while (idx < len(list_1)) and (idx < len(list_2)):
+        if list_1[idx] != list_2[idx]:
+            # only wants ans to change if there is a non-equal idx
             ans = False
-        idx += 1
+        idx += 1  # to prevent infinite loop and check each index
     return ans
 
 
