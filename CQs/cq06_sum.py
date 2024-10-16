@@ -21,6 +21,6 @@ def f_sum(vals: list[float]) -> float:
 
 def f_range_sum(vals: list[float]) -> float:
     sum: float = float()  # create an empty float that you use to add indexes
-    for num in range(0, len(vals)):  # excludes the end point which is perfect for idx
-        sum += num
+    for index in range(0, len(vals)):  # excludes the end point which is perfect for idx
+        sum += vals[index]
     return sum
