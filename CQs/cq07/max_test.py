@@ -20,5 +20,5 @@ def test_find_and_remove_max_use_case_2() -> None:
 
 def test_find_and_remove_max_edge_case() -> None:
     """Test that find_and_remove_max returns correct max with neg. values."""
-    a: list[int] = [-1, -2, -3, -1]
-    assert find_and_remove_max(a) == -1  # -1 is the max so wants that as the return
+    a: list[int] = [2, 2, 2, 2]
+    assert find_and_remove_max(a) == 2  # 2 is the max; all inputs are the same
