@@ -8,14 +8,11 @@ def invert(a: dict[str, str]) -> dict[str, str]:
     invert: dict[str, str] = {}
     for key in a:
         invert[a[key]] = key  # inverse the key and value from a
-    for key_1 in invert:
-        for key_2 in invert:
-            if key_1 == key_2:
-                raise KeyError("Keys must be unique!")
+    # HOW TO PREVENT DUPLICATE KEYS IN DICTS????
     return invert
 
 
-def favorite_colors(a: dict[str, str]) -> str:
+def favorite_color(a: dict[str, str]) -> str:
     """Return most said color in a dict."""
     fav: str = ""
     count: dict[str, int] = {}
@@ -28,11 +25,11 @@ def favorite_colors(a: dict[str, str]) -> str:
         count[a[names_1]] = color_count
 
     for colors_1 in count:  # will compare colors to find one with highest number
-        for colors_2 in count:
-            if count[colors_1] < count[colors_2]:
+        for colors_2 in count:  # how to assure fav becomes whichever
+            if count[colors_2] > count[colors_1]:
                 fav = colors_2
-            else:
-                fav = colors_1
+        else:
+            fav = colors_1
     return fav
 
 
@@ -46,10 +43,4 @@ def count(a: list[str]) -> dict[str, int]:
             if elem_1 == elem_2:
                 count += 1
         val_count[elem_1] = count
-    for val_1 in val_count:
-        for val_2 in val_count:
-            if val_1 == val_2:
-                val_count.pop(val_2)  # cannot have this syntax
-                # how can I remove duplicate entries in dicts?
-
     return val_count
