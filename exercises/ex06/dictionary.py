@@ -7,40 +7,59 @@ def invert(a: dict[str, str]) -> dict[str, str]:
     """Invert keys and values in a dict."""
     invert: dict[str, str] = {}
     for key in a:
+        if a[key] in invert:  # means a duplicate key exists (raise error)
+            raise KeyError("Keys must be unique!")
         invert[a[key]] = key  # inverse the key and value from a
-    # HOW TO PREVENT DUPLICATE KEYS IN DICTS????
     return invert
 
 
 def favorite_color(a: dict[str, str]) -> str:
     """Return most said color in a dict."""
     fav: str = ""
-    count: dict[str, int] = {}
-    color_count: int = 0
-    for names_1 in a:  # will count favorite colors and put in a dict
-        color_count: int = 0
-        for names_2 in a:
-            if a[names_1] == a[names_2]:
-                color_count += 1
-        count[a[names_1]] = color_count
-
-    for colors_1 in count:  # will compare colors to find one with highest number
-        for colors_2 in count:  # how to assure fav becomes whichever
-            if count[colors_2] > count[colors_1]:
-                fav = colors_2
+    color_count: dict[str, int] = {}  # color and count
+    max: int = 0  # keep track of max count
+    for name in a:  # will count favorite colors and put in a dict
+        if a[name] in color_count:
+            color_count[a[name]] += 1
         else:
-            fav = colors_1
+            color_count[a[name]] = 1
+    for color in color_count:
+        if color_count[color] > max:  # compares colors singularly
+            fav = color  # will only reassign if greater than, not equal to max
+            max = color_count[color]
     return fav
 
 
 def count(a: list[str]) -> dict[str, int]:
     """Creating dict with values and the appearances of said values."""
     val_count: dict[str, int] = {}
-    count: int = 0
     for elem_1 in a:
-        count = 0
-        for elem_2 in a:
-            if elem_1 == elem_2:
-                count += 1
-        val_count[elem_1] = count
+        if elem_1 in val_count:
+            val_count[elem_1] += 1  # add one to add to appearances
+        else:
+            val_count[elem_1] = 1  # add a row to the dict
     return val_count
+
+
+def alphabetizer(x: list[str]) -> dict[str, list[str]]:
+    """Creating an index for words starting with the same letter."""
+    begin_letter: dict[str, list[str]] = {}
+    for words in x:
+        first_letter: str = words[0].lower()  # make the first letter lowercase
+        if first_letter in begin_letter:
+            begin_letter[words[0]].append(words)  # add word to list value
+        else:
+            begin_letter[words[0]] = [words]
+    return begin_letter
+
+
+def update_attendance(attendance: dict[str, list[str]], day: str, student: str) -> None:
+    """Attendance of students stored in a dict."""
+    if day in attendance:
+        if not (
+            student in attendance[day]
+        ):  # if student is not already counted in attendance
+            attendance[day].append(student)
+    else:
+        attendance[day] = [student]  # if day is not already in attendance
+    return None
