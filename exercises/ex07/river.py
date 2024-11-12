@@ -44,7 +44,7 @@ class River:
         for idx in range(0, len(self.bears)):
             if len(self.fish) >= 5:
                 self.bears[idx].eat(3)
-                self.remove_fish(3)
+                self.remove_fish(3)  # remove the 3 fish before repeating
         return None
 
     def check_hunger(self):
