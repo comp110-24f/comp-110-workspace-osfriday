@@ -43,20 +43,23 @@ def last(head: Node) -> int:
         return rest  # Recursive case!
 
 
-def recursive_range(start: int, end: int) -> Node | None:
-    """Build a list recursively from start to end."""
-    if start > end:
-        raise ValueError("invalid arguments")
-    if start == end:
-        return None
+def value_at(head: Node | None, index: int) -> int:
+    """Return data of a Node stored at a given index."""
+    if head is None:
+        raise IndexError("Index is out of bounds on the list.")
     else:
-        # 1. Handle the first value in your new list here!
-        first: int = start
-        # 2. Let the rest of the list be handled recursively!
-        rest: Node | None = recursive_range(start + 1, end)
-        # 3. Return a new node which is followed by rest
-        return Node(first, rest)
+        if index == 0:
+            return head.value
+        else:
+            index -= 1
+            return value_at(head.next, index)
 
 
-a_list: Node | None = recursive_range(110, 113)
-print(a_list)
+def max(head: Node | None) -> int:
+    """Returns max data value in a linked list."""
+    if head is None:
+        raise ValueError("Cannot call max with None")
+    # max: int = 0
+    # i: int = 0
+    # if max is less than the value_at(subsequent Node) then reassign max
+    # how can I sequence through linked lists w/o loops?
