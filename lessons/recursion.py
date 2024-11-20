@@ -31,3 +31,12 @@ def to_str(head: Node | None) -> str:
 
 
 print(to_str(one))
+
+
+def factorial(n: int) -> int:
+    # Base Case: n is 0 or 1
+    if n == 0 or n == 1:
+        return 1
+    # Recursive Case: n * recursive call with n-1 as argument
+    else:
+        return n * factorial(n - 1)
